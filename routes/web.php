@@ -32,6 +32,7 @@ Route::get      ('/editrestaurant/{user_id}'    ,'Web\AdminControllers\RegisterC
 Route::put      ('/updaterestaurant/{user_id}'  ,'Web\AdminControllers\RegisterController@update')  ->name('update.restaurant');
 
 Route::get      ('/findrestaurant'              ,'Web\AdminControllers\RegisterController@search')  ->name('find.restaurant');
+Route::get      ('/find_user'                   ,'Web\AdminControllers\UserController@search')      ->name('find.user');
 
 //routes for restaurants
 Route::resource('restaurantdashboard','Web\RestaurantControllers\DashboardController');
