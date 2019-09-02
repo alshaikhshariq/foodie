@@ -22,32 +22,47 @@ class UserController extends Controller
         
     }
 
+    //search user in users table
     public function search(Request $request)
     {
-        // if (empty($request->first_name) || ($request->email_address) || ($request->phone_number)) 
-        // {
-        //     return request('type to search')->with();
-        // }
-        if (!empty($request->first_name)) {
+        
+        if (!empty($request->first_name)) 
+        {
+
             //get data from user table
             $user = User::where('first_name', 'LIKE', '%' . $request->first_name . '%')->get();
             return view('Admin/User/search_user')->with('user',$user);
-        }
 
-        else if(!empty($request->email_address)){
+        }
+        else if(!empty($request->last_name))
+        {
+
+            //get data from user table
+            $user = User::where('last_name',$request->last_name)->get();
+            return view('Admin/User/search_user')->with('user',$user);
+
+        }
+        else if(!empty($request->email_address))
+        {
+
             //get data from user table
             $user = User::where('email_address',$request->email_address)->get();
             return view('Admin/User/search_user')->with('user',$user);
+
         }
 
-        else if(!empty($request->phone_number)){
+        else if(!empty($request->phone_number))
+        {
             //get data from user table
             $user = User::where('phone_number',$request->phone_number)->get();
             return view('Admin/User/search_user')->with('user',$user);
-        }
 
-        else{
+        }
+        else
+        {
+
             return view('Admin/User/search_user')->with('user',array());
+
         }
         
         

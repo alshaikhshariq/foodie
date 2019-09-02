@@ -28,22 +28,28 @@
             <form  method="GET" action="{{ route('find.user') }}">
               <div class="box-body">
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                 <div class="form-group">
                   <label for="exampleInputEmail1">First Name</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" name="first_name" placeholder="enter first name">
                  </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email Address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="enter email address">
+                  <label for="exampleInputEmail1">Last Name</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" name="last_name" placeholder="enter last name">
                  </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email Address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" name="email_address" placeholder="enter email address">
+                 </div>
+                </div>
+                <div class="col-md-3">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Phone Number</label>
-                  <input type="number" class="form-control" id="exampleInputPassword1" name="contact" placeholder="enter phone number">
+                  <input type="number" class="form-control" id="exampleInputPassword1" name="phone_number" placeholder="enter phone number">
                 </div>
                 </div>
               </div>
