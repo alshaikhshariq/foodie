@@ -16,6 +16,8 @@ Route::get('/', function ()
     return view('Welcome');
 });
 
+
+
 //routes for admin
 Route::resource ('admindashboard'               ,'Web\AdminControllers\DashboardController');
 
@@ -34,5 +36,6 @@ Route::put      ('/updaterestaurant/{user_id}'  ,'Web\AdminControllers\RegisterC
 Route::get      ('/findrestaurant'              ,'Web\AdminControllers\RegisterController@search')  ->name('find.restaurant');
 Route::get      ('/find_user'                   ,'Web\AdminControllers\UserController@search')      ->name('find.user');
 
+Route::get ('/search_order','web\AdminControllers\RegisterController@search')->name('order.restaurant');
 //routes for restaurants
 Route::resource('restaurantdashboard','Web\RestaurantControllers\DashboardController');
