@@ -172,24 +172,11 @@ class RegisterController extends Controller
         
         
     }
-    public function search_order(Request $request){
-        if (!empty($request->title)) {
-            //get data from restaurant table
-            $restaurant = Restaurant::where('title', 'LIKE', '%' . $request->title . '%')->get();
-            return view('Admin/Register/search_restaurant')->with('restaurant',$restaurant);
-        }
-
-        if(!empty($request->email)){
-            //get data from restaurant table
-            $restaurant = Restaurant::where('email',$request->email)->get();
-            return view('Admin/Register/search_restaurant')->with('restaurant',$restaurant);
-        }
-
-        if(!empty($request->contact)){
-            //get data from restaurant table
-            $restaurant = Restaurant::where('contact',$request->contact)->get();
-            return view('Admin/Register/search_restaurant')->with('restaurant',$restaurant);
-        }
+    // return add food page
+    public function add_food()
+    {
+        return view('Admin/Register/add_food');
     }
+  
 
 }

@@ -36,6 +36,9 @@ Route::put      ('/updaterestaurant/{user_id}'  ,'Web\AdminControllers\RegisterC
 Route::get      ('/findrestaurant'              ,'Web\AdminControllers\RegisterController@search')  ->name('find.restaurant');
 Route::get      ('/find_user'                   ,'Web\AdminControllers\UserController@search')      ->name('find.user');
 
-Route::get ('/search_order','web\AdminControllers\RegisterController@search')->name('order.restaurant');
+//add food route
+Route::get      ('/add_food','Web\AdminControllers\RegisterController@add')->name('add.food');
+Route::get      ('/edit_food','Web\AdminControllers\RegisterController@edit')->name('edit.food');
+Route::get      ('/search_food','Web\AdminControllers\RegisterController@search')->name('search.food');
 //routes for restaurants
 Route::resource('restaurantdashboard','Web\RestaurantControllers\DashboardController');
