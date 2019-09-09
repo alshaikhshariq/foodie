@@ -90,8 +90,8 @@
          <a href    ="{{url('admindashboard')}}">   <i class="fa fa-dashboard"> </i> Dashboard</a>  </li>
        <li ><a href ="{{url('searchrestaurant')}}"> <i class="fa fa-dashboard"> </i> Register</a>   </li>
        <li ><a href ="{{url('search_user')}}">      <i class="fa fa-dashboard"> </i> User</a>       </li>
-       <li ><a href ="{{url('search_user')}}">      <i class="fa fa-dashboard"> </i> Category</a>   </li>
-       <li ><a href ="{{url('search_user')}}">      <i class="fa fa-dashboard"> </i> Food</a>   </li>      
+       <li ><a href ="{{url('search_category')}}">      <i class="fa fa-dashboard"> </i> Category</a>   </li>
+       <li ><a href ="{{url('search_food')}}">      <i class="fa fa-dashboard"> </i> Food</a>   </li>      
       
          
      

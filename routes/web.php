@@ -24,10 +24,10 @@ Route::resource ('admindashboard'               ,'Web\AdminControllers\Dashboard
 Route::get      ('/searchrestaurant'            ,'Web\AdminControllers\RegisterController@index')   ->name('search.restaurant');
 Route::get      ('/search_user'                 ,'Web\AdminControllers\UserController@index')       ->name('search.user');
 
-Route::get      ('/addrestaurant'               ,'Web\AdminControllers\RegisterController@add')     ->name('add.restaurant');
+Route::get     ('/addrestaurant'               ,'Web\AdminControllers\RegisterController@add')     ->name('add.restaurant');
 Route::get      ('/adduser'                     ,'Web\AdminControllers\UserController@add')         ->name('add.user');
 
-Route::post     ('/storerestaurant'             ,'Web\AdminControllers\RegisterController@store')   ->name('register.restaurant');
+Route::get     ('/storerestaurant'             ,'Web\AdminControllers\RegisterController@store')   ->name('register.restaurant');
 
 Route::get      ('/editrestaurant/{user_id}'    ,'Web\AdminControllers\RegisterController@edit')    ->name('edit.restaurant');
 
@@ -37,8 +37,23 @@ Route::get      ('/findrestaurant'              ,'Web\AdminControllers\RegisterC
 Route::get      ('/find_user'                   ,'Web\AdminControllers\UserController@search')      ->name('find.user');
 
 //add food route
-Route::get      ('/add_food','Web\AdminControllers\RegisterController@add')->name('add.food');
-Route::get      ('/edit_food','Web\AdminControllers\RegisterController@edit')->name('edit.food');
-Route::get      ('/search_food','Web\AdminControllers\RegisterController@search')->name('search.food');
+Route::get('/add_food','Web\AdminControllers\RegisterController@add_food')->name('add.food');
+
+Route::get('/store_food','Web\AdminControllers\RegisterController@store_food')->name('search.food');
+
+//edit food route
+Route::get('/edit_food/{food_id}','Web\AdminControllers\RegisterController@edit_food')->name('edit.food');
+
+//update food route
+Route::put('/update_food/{food_id}','Web\AdminControllers\RegisterController@update_food')->name('update.food');
+
+//search food route
+Route::get('/search_food','Web\AdminControllers\RegisterController@search_food')->name('search.food');
+
+//find food route
+Route::get('/find_food','Web\AdminControllers\RegisterController@search_food')->name('find.food');
+
+//get food route
+Route::get('/get_food','Web\AdminControllers\RegisterController@get_food')->name('search.food');
 //routes for restaurants
 Route::resource('restaurantdashboard','Web\RestaurantControllers\DashboardController');
