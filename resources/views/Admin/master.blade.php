@@ -87,11 +87,19 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
        <li class="active">
+<<<<<<< HEAD
          <a href    ="{{url('admindashboard')}}">   <i class="fa fa-dashboard"> </i> Dashboard  </a></li>
        <li ><a href ="{{url('searchrestaurant')}}"> <i class="fa fa-dashboard"> </i> Register   </a></li>
        <li ><a href ="{{url('search_user')}}">      <i class="fa fa-dashboard"> </i> User       </a></li>
        <li ><a href ="{{url('search_category')}}">  <i class="fa fa-dashboard"> </i> Category   </a></li>
        <li ><a href ="{{url('search_food')}}">      <i class="fa fa-dashboard"> </i> Food       </a></li>      
+=======
+         <a href    ="{{url('admindashboard')}}">   <i class="fa fa-dashboard"> </i> Dashboard</a>  </li>
+       <li ><a href ="{{url('searchrestaurant')}}"> <i class="fa fa-dashboard"> </i> Register</a>   </li>
+       <li ><a href ="{{url('search_user')}}">      <i class="fa fa-dashboard"> </i> User</a>       </li>
+       <li ><a href ="{{url('search_category')}}">      <i class="fa fa-dashboard"> </i> Category</a>   </li>
+       <li ><a href ="{{url('search_food')}}">      <i class="fa fa-dashboard"> </i> Food</a>   </li>      
+>>>>>>> 57345f414899459dba10816a304eec5247d93893
       
          
      

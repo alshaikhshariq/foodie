@@ -42,5 +42,26 @@ Route::get      ('/find_user'                   ,'Web\AdminControllers\UserContr
 Route::post     ('/login'                        ,'Web\LoginController@login')                           ->name('login.user');
 
 Route::post     ('/search_order'                ,'web\AdminControllers\RegisterController@search')      ->name('order.restaurant');
+
+//add food route
+Route::get('/add_food','Web\AdminControllers\RegisterController@add_food')->name('add.food');
+
+Route::get('/store_food','Web\AdminControllers\RegisterController@store_food')->name('search.food');
+
+//edit food route
+Route::get('/edit_food/{food_id}','Web\AdminControllers\RegisterController@edit_food')->name('edit.food');
+
+//update food route
+Route::put('/update_food/{food_id}','Web\AdminControllers\RegisterController@update_food')->name('update.food');
+
+//search food route
+Route::get('/search_food','Web\AdminControllers\RegisterController@search_food')->name('search.food');
+
+//find food route
+Route::get('/find_food','Web\AdminControllers\RegisterController@search_food')->name('find.food');
+
+//get food route
+Route::get('/get_food','Web\AdminControllers\RegisterController@get_food')->name('search.food');
+
 //routes for restaurants
 Route::resource('restaurantdashboard','Web\RestaurantControllers\DashboardController');

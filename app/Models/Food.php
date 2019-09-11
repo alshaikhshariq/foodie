@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-  
-    // make array of fillable fields
+    //make array of fillable fields
     protected $fillable = [
         'category_id',
         'restaurant_id', 

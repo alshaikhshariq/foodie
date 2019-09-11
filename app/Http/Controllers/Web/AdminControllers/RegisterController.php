@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Mail;
 use Illuminate\Support\Str;
 use App\Models\Restaurant;
+use App\Models\Food;
 use Illuminate\Support\Facades\Input;
+use Validator;
 
 class RegisterController extends Controller
 {
@@ -172,24 +174,110 @@ class RegisterController extends Controller
         
         
     }
-    public function search_order(Request $request){
-        if (!empty($request->title)) {
-            //get data from restaurant table
-            $restaurant = Restaurant::where('title', 'LIKE', '%' . $request->title . '%')->get();
-            return view('Admin/Register/search_restaurant')->with('restaurant',$restaurant);
+    // return add food page
+    public function add_food(Request $request)
+    {
+       
+        return view('Admin/Food/add_food');
+      
+        
+    }
+    public function store_food(Request $request)
+    {
+        $this->validate($request,
+        [
+            'food_title'         => 'required',
+            'food_price'         => 'required|numeric',
+            'category_name'      => 'required',
+            'image'              => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+       
+        try{
+        $profile_image = $request->file('image');
+        if(isset($profile_image)){
+        $image_name = $profile_image->getClientOriginalName();
+        $image_name = str_replace(" ","_",$image_name);
+        $image_path = 'upload/foodImages/';
+        $profile_image->move(public_path($image_path),$image_name);
         }
 
-        if(!empty($request->email)){
-            //get data from restaurant table
-            $restaurant = Restaurant::where('email',$request->email)->get();
-            return view('Admin/Register/search_restaurant')->with('restaurant',$restaurant);
+        $food = new Food();
+        $food->food_title     = $request->input('food_title');
+        $food->food_price     = $request->input('food_price');
+        $food->category_name  = $request->input('category_name');
+        $food->image_path     = $image_path;
+        $food->image_name     = $image_path;
+        $food->save();
+
+        return redirect()->route('search.food');
+    }
+    catch(\Exception $exception){
+        return back()->withError($exception->getMessage())->withInput();
+    }
+    
+    }      
+
+        
+    
+    public function edit_food($food_id){
+        $food = Food::where('food_id',$food_id)->first();
+        return view('Admin/Food/add_food')->with('food',$food);
+    }
+  
+    public function update_food(Request $request,$food_id){
+
+        $this->validate($request,
+        [
+            'food_title'    => 'required',
+            'food_price'    => 'required|numeric',
+            'category_name' => 'required'
+            
+        ]);
+
+        try{
+
+            //update food in foods table
+            Food::where('food_id', $food_id)
+            ->update([
+            
+            'food_title'    => $request->food_title,
+            'food_price'    => $request->food_price,
+            'category_name' => $request->category_name,
+            
+        
+            ]);
+            return redirect()->route('search.food');
+        }catch(\Exception $exception){
+            return back()->withError($exception->getMessage())->withInput();
+        }
+    }
+    
+    public function search_food(Request $request){
+
+        if (!empty($request->food_title)) {
+            //get data from food table
+            $food = Food::where('food_title', 'LIKE', '%' . $request->food_title . '%')->get();
+            return view('Admin/Food/search_food')->with('food',$food);
         }
 
-        if(!empty($request->contact)){
-            //get data from restaurant table
-            $restaurant = Restaurant::where('contact',$request->contact)->get();
-            return view('Admin/Register/search_restaurant')->with('restaurant',$restaurant);
+        if(!empty($request->food_price)){
+            //get data from food table
+            $food = Food::where('food_price',$request->food_price)->get();
+            return view('Admin/Food/search_food')->with('food',$food);
         }
+
+        if(!empty($request->category_name)){
+            //get data from food table
+            $food = Food::where('category_name',$request->category_name)->get();
+            return view('Admin/Food/search_food')->with('food',$food);
+        }
+
+    }
+
+    public function get_food(Request $request){
+
+        $food = Food::where($request->food_id->all());
+        return view('Admin/Food/get_food')->with('food',$food);
     }
 
 }
