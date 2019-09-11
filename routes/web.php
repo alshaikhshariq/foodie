@@ -24,6 +24,7 @@ Route::resource ('admindashboard'               ,'Web\AdminControllers\Dashboard
 Route::get      ('/searchrestaurant'            ,'Web\AdminControllers\RegisterController@index')       ->name('search.restaurant');
 Route::get      ('/search_user'                 ,'Web\AdminControllers\UserController@index')           ->name('search.user');
 Route::get      ('/search_category'             ,'Web\AdminControllers\CategoryController@index')       ->name('search.category');
+Route::get      ('/search_order'                ,'Web\AdminControllers\OrderController@index')          ->name('search.order');
 Route::get      ('/login_view'                  ,'Web\LoginController@index')                           ->name('login_view.user');
 
 Route::get      ('/addrestaurant'               ,'Web\AdminControllers\RegisterController@add')         ->name('add.restaurant');
