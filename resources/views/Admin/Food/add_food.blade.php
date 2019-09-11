@@ -25,7 +25,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="GET" action="{{ route('search.food') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('create.food') }}" enctype="multipart/form-data">
               <div class="box-body">
                     <input type="hidden" value="{{ csrf_token() }}" name="_token">
                     @if (session('error'))
@@ -50,29 +50,24 @@
                   @endif
                  </div>
                 </div>
+
                 <div class="col-md-3">
                 <div class="form-group">
-                  <label >Category Name</label>
-                  <input type="text" class="form-control" name="category_name" value="{{ old('category_name') }}" placeholder="enter category name">
-                  @if ($errors->has('category_name'))
-                   <div class="danger">{{ $errors->first('category_name') }}</div>
+                  <label > Customized</label>
+                  <input type="text" class="form-control" name="is_customized" value="{{ old('is_customized') }}" placeholder="enter price">
+                  @if ($errors->has('is_customized'))
+                   <div class="danger">{{ $errors->first('is_customized') }}</div>
                   @endif
+                 </div>
                 </div>
-                </div>
+                
+
+                
                 
 
 
             
-                  <div class="col-md-3">
-                      <div class="form-group">
-                        <label >Food Image</label>
-                        <input type="file" class="form-control" name="image"  placeholder="enter delivery fee">
-                        @if ($errors->has('image'))
-                        <div class="danger">{{ $errors->first('image') }}</div>
-                        @endif
-                    </div>
-                 </div>
-                </div>
+                  
                 
         </div>
 

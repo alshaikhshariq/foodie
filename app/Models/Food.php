@@ -14,6 +14,8 @@ class Food extends Model
 
         'food_title', 
         'food_price', 
+        'meta_data',
+        'is_customized',
         'category_name', 
         'category_id',
         'restaurant_id', 
