@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use Validator;
 use App\User;
+use App\Models\Category;
+
 
 class ApiController extends Controller
 {
@@ -51,4 +53,6 @@ class ApiController extends Controller
             }
         }
     }
+
+
 }
