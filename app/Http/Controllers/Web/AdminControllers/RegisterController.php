@@ -19,7 +19,7 @@ class RegisterController extends Controller
     public function index()
     {
         //get news from news table
-        $restaurant = Restaurant::orderBy('created_at','desc')->paginate(2);
+        $restaurant = Restaurant::orderBy('created_at','desc')->paginate(5);
         return view('Admin/Register/search_restaurant')->with('restaurant',$restaurant);
         
     }
@@ -31,22 +31,22 @@ class RegisterController extends Controller
     }
 
     //store restaurant in restaurants table & return all restaurant page view
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $this->validate($request,
         [
-            'title'         => 'required',
-            'email'         => 'bail|required|unique:restaurants',
-            'contact'       => 'bail|required|numeric|unique:restaurants',
-            'description'   => 'required',
-            'minimum_order' => 'required|numeric',
-            'delivery_fee'  => 'required|numeric',
-            'delivery_time' => 'required',
-            'open_time'     => 'required',
-            'close_time'    => 'required',
-            'longitude'     => 'bail|required|numeric|between:-9999999999.99999999999,9999999999.99999999999',
-            'latitude'      => 'bail|required|numeric|between:-9999999999.99999999999,9999999999.99999999999',
-            'image'         => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+            'title'         =>  'required',
+            'email'         =>  'bail|required|unique:restaurants',
+            'contact'       =>  'bail|required|numeric|unique:restaurants',
+            'description'   =>  'required',
+            'minimum_order' =>  'required|numeric',
+            'delivery_fee'  =>  'required|numeric',
+            'delivery_time' =>  'required',
+            'open_time'     =>  'required',
+            'close_time'    =>  'required',
+            'longitude'     =>  'bail|required|numeric|between:-9999999999.99999999999,9999999999.99999999999',
+            'latitude'      =>  'bail|required|numeric|between:-9999999999.99999999999,9999999999.99999999999',
+            'image'         =>  'required|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         //email verification for restaurant
@@ -80,6 +80,7 @@ class RegisterController extends Controller
                 $restaurant->email          = $request->input('email');
                 $restaurant->contact        = $request->input('contact');
                 $restaurant->password       = bcrypt($password);
+                $restaurant->is_type        = 'normal'; 
                 $restaurant->description    = $request->input('description');
                 $restaurant->minimum_order  = $request->input('minimum_order');
                 $restaurant->delivery_fee   = $request->input('delivery_fee');
@@ -139,6 +140,7 @@ class RegisterController extends Controller
             'delivery_fee'  => $request->delivery_fee,
             'delivery_time' => $request->delivery_time,
             'open_time'     => $request->open_time,
+            'is_type'       => $request->is_type, 
             'close_time'    => $request->close_time,
             'longitude'     => $request->longitude,
             'latitude'      => $request->latitude,
@@ -276,7 +278,7 @@ class RegisterController extends Controller
 
     public function get_food(Request $request){
 
-        $food = Food::where($request->food_id->all());
+        $food = Food::where($request->food_id->paginate(4));
         return view('Admin/Food/get_food')->with('food',$food);
     }
 

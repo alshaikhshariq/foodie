@@ -17,6 +17,7 @@ class Restaurant extends Model
         'minimum_order', 
         'delivery_fee', 
         'delivery_time',
+        'is_type',
         'open_time', 
         'close_time',
         'image_path', 

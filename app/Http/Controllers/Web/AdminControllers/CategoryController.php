@@ -67,35 +67,39 @@ class CategoryController extends Controller
         
     }
 
-    public function add(Request $request)
+    public function add()
     {
-        echo ('hello');
+        return view('Admin/Category/add_category');
+    }
+    public function create(Request $request)
+    {
+        //echo ('hello');
         
-        // if(!empty(session('user_id')))
-        // {
-        //     try
-        //     {
-        //         //check if user already exist
-        //         $isexist    =   Category::where('category_id', $request->category)->first();
-        //         if(empty($isexist))
-        //         {
-        //             $category = Category::create($request->all());
-        //             return response()->json(['status' =>$this->SUCCESS_STATUS, 'Category'=> $category]);
-        //         }
-        //         else
-        //         {
-        //             return response()->json(['status' =>$this->FALIURE_STATUS, 'message'=> 'category already exists']);
-        //         }
-        //     }
-        //     catch(\Illuminate\Database\QueryException $e)
-        //     {
-        //         return response() -> json(['status' => $this ->FALIURE_STATUS, 'message' => $e -> getPrevious()]);
-        //     }
-        // }
-        // else
-        // {
-        //     echo ('hello');
-        // }
+        if(!empty(session('user_id')))
+        {
+            try
+            {
+                //check if user already exist
+                $isexist    =   Category::where('category_id', $request->category)->first();
+                if(empty($isexist))
+                {
+                    $category = Category::create($request->all());
+                    return response()->json(['status' =>$this->SUCCESS_STATUS, 'Category'=> $category]);
+                }
+                else
+                {
+                    return response()->json(['status' =>$this->FALIURE_STATUS, 'message'=> 'category already exists']);
+                }
+            }
+            catch(\Illuminate\Database\QueryException $e)
+            {
+                return response() -> json(['status' => $this ->FALIURE_STATUS, 'message' => $e -> getPrevious()]);
+            }
+        }
+        else
+        {
+            echo ('hello');
+        }
     }
 
     public function update(Request $request,$user_id)

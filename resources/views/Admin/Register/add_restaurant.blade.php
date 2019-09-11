@@ -25,7 +25,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="GET" action="{{ route('register.restaurant') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('create.restaurant') }}" enctype="multipart/form-data">
               <div class="box-body">
                     <input type="hidden" value="{{ csrf_token() }}" name="_token">
                     @if (session('error'))

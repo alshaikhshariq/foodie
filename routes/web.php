@@ -28,9 +28,10 @@ Route::get      ('/login_view'                  ,'Web\LoginController@index')   
 
 Route::get      ('/addrestaurant'               ,'Web\AdminControllers\RegisterController@add')         ->name('add.restaurant');
 Route::get      ('/adduser'                     ,'Web\AdminControllers\UserController@add')             ->name('add.user');
-Route::post     ('/add'                         ,'Web\AdminControllers\CategoryController@add')         ->name('add.category');
+Route::get      ('/addcategory'                 ,'Web\AdminControllers\CategoryController@add')         ->name('add.category');
 
-Route::post     ('/storerestaurant'             ,'Web\AdminControllers\RegisterController@store')       ->name('register.restaurant');
+Route::post     ('/createcategory'              ,'Web\AdminControllers\CategoryController@create')      ->name('create.category');
+Route::post     ('/createrestaurant'           ,'Web\AdminControllers\RegisterController@create')       ->name('create.restaurant');
 
 Route::get      ('/editrestaurant/{user_id}'    ,'Web\AdminControllers\RegisterController@edit')        ->name('edit.restaurant');
 
@@ -39,12 +40,12 @@ Route::put      ('/updaterestaurant/{user_id}'  ,'Web\AdminControllers\RegisterC
 Route::get      ('/findrestaurant'              ,'Web\AdminControllers\RegisterController@search')      ->name('find.restaurant');
 Route::get      ('/find_user'                   ,'Web\AdminControllers\UserController@search')          ->name('find.user');
 
-Route::post     ('/login'                        ,'Web\LoginController@login')                           ->name('login.user');
+Route::post     ('/login'                       ,'Web\LoginController@login')                           ->name('login.user');
 
 Route::post     ('/search_order'                ,'web\AdminControllers\RegisterController@search')      ->name('order.restaurant');
 
 //add food route
-Route::get('/add_food','Web\AdminControllers\RegisterController@add_food')->name('add.food');
+Route::post('/store_food','Web\AdminControllers\RegisterController@store_food')->name('add.food');
 
 Route::get('/store_food','Web\AdminControllers\RegisterController@store_food')->name('search.food');
 
