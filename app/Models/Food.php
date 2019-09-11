@@ -6,19 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-    //
-    public $table = "foods";
-    public $timestamps = false;
-   
+    //make array of fillable fields
     protected $fillable = [
 
-        'food_title', 
-        'food_price', 
-        'meta_data',
-        'is_customized',
-        'category_name', 
-        'category_id',
-        'restaurant_id', 
+
         
+        'restaurant_id', 
+        'food_title',
+        'food_price', 
+        'is_customized',
+        'meta_data',
+        'category_id',
     ];
 }

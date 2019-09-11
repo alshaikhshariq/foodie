@@ -25,7 +25,11 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
+
             <form method="POST" action="{{ route('create.food') }}" enctype="multipart/form-data">
+
+            
+
               <div class="box-body">
                     <input type="hidden" value="{{ csrf_token() }}" name="_token">
                     @if (session('error'))
@@ -54,14 +58,24 @@
                 <div class="col-md-3">
                 <div class="form-group">
                   <label > Customized</label>
-                  <input type="text" class="form-control" name="is_customized" value="{{ old('is_customized') }}" placeholder="enter price">
+                  <input type="text" class="form-control" name="is_customized" value="{{ old('is_customized') }}" placeholder="is customized">
                   @if ($errors->has('is_customized'))
                    <div class="danger">{{ $errors->first('is_customized') }}</div>
                   @endif
                  </div>
                 </div>
                 
-
+                <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                        <label> Food Description</label>
+                        <textarea class="form-control" rows="5" name="description" value="{{ old('description') }}" placeholder="enter description about food ..."></textarea>
+                        @if ($errors->has('description'))
+                        <div class="danger">{{ $errors->first('description') }}</div>
+                        @endif
+                 </div>
+                </div>
+              </div>  
                 
                 
 

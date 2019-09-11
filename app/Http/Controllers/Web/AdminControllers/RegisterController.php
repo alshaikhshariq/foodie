@@ -19,7 +19,7 @@ class RegisterController extends Controller
     public function index()
     {
         //get news from news table
-        $restaurant = Restaurant::orderBy('created_at','desc')->paginate(2);
+        $restaurant = Restaurant::orderBy('created_at','desc')->paginate(5);
         return view('Admin/Register/search_restaurant')->with('restaurant',$restaurant);
         
     }
@@ -31,22 +31,22 @@ class RegisterController extends Controller
     }
 
     //store restaurant in restaurants table & return all restaurant page view
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $this->validate($request,
         [
-            'title'         => 'required',
-            'email'         => 'bail|required|unique:restaurants',
-            'contact'       => 'bail|required|numeric|unique:restaurants',
-            'description'   => 'required',
-            'minimum_order' => 'required|numeric',
-            'delivery_fee'  => 'required|numeric',
-            'delivery_time' => 'required',
-            'open_time'     => 'required',
-            'close_time'    => 'required',
-            'longitude'     => 'bail|required|numeric|between:-9999999999.99999999999,9999999999.99999999999',
-            'latitude'      => 'bail|required|numeric|between:-9999999999.99999999999,9999999999.99999999999',
-            'image'         => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+            'title'         =>  'required',
+            'email'         =>  'bail|required|unique:restaurants',
+            'contact'       =>  'bail|required|numeric|unique:restaurants',
+            'description'   =>  'required',
+            'minimum_order' =>  'required|numeric',
+            'delivery_fee'  =>  'required|numeric',
+            'delivery_time' =>  'required',
+            'open_time'     =>  'required',
+            'close_time'    =>  'required',
+            'longitude'     =>  'bail|required|numeric|between:-9999999999.99999999999,9999999999.99999999999',
+            'latitude'      =>  'bail|required|numeric|between:-9999999999.99999999999,9999999999.99999999999',
+            'image'         =>  'required|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         //email verification for restaurant
@@ -80,6 +80,7 @@ class RegisterController extends Controller
                 $restaurant->email          = $request->input('email');
                 $restaurant->contact        = $request->input('contact');
                 $restaurant->password       = bcrypt($password);
+                $restaurant->is_type        = 'normal'; 
                 $restaurant->description    = $request->input('description');
                 $restaurant->minimum_order  = $request->input('minimum_order');
                 $restaurant->delivery_fee   = $request->input('delivery_fee');
@@ -139,6 +140,7 @@ class RegisterController extends Controller
             'delivery_fee'  => $request->delivery_fee,
             'delivery_time' => $request->delivery_time,
             'open_time'     => $request->open_time,
+            'is_type'       => $request->is_type, 
             'close_time'    => $request->close_time,
             'longitude'     => $request->longitude,
             'latitude'      => $request->latitude,
@@ -174,6 +176,15 @@ class RegisterController extends Controller
         
         
     }
+   
+   
+    public function foodindex()
+    {
+        //get news from news table
+        $food = Food::orderBy('created_at','desc')->paginate(5);
+        return view('Admin/Food/search_food')->with('food',$food);
+        
+    }
     // return add food page
     public function add_food(Request $request)
     {
@@ -184,24 +195,28 @@ class RegisterController extends Controller
     }
     public function create_food(Request $request)
     {
-       $food = Validator::make($request->all(), [
-        'food_title' => 'required',
-        'food_price' => 'required|numeric',
-        'meta_data' => 'required',
-        'is_customized' => 'required|boolean',
-
-    ]);
-    
+        $this->validate($request,
+        [
+            'food_title'         =>  'required',
+            'food_price'         =>  'required|numeric',
+            'is_customized'      =>  'required',
+            'description'        =>  'required'
+            
+        ]);
     try{
-        $food = Food::create($request->all());
-    
+            $food = new Food();
+            $food->food_title = $request->input('food_title');
+            $food->food_price = $request->input('food_price');
+            $food->is_customized = "0";
+            $food->category_id = "1";
+            $food->restaurant_id = "1";
+            $food['meta_data'] = ['description' => $request->input('description')];
+            $food->save();
+                return redirect()->route('add.food');
     }
     catch(\Exception $exception){
-
         return back()->withError($exception->getMessage())->withInput();
-    }    
-
-    
+    }
     
     }      
 
@@ -245,19 +260,19 @@ class RegisterController extends Controller
         if (!empty($request->food_title)) {
             //get data from food table
             $food = Food::where('food_title', 'LIKE', '%' . $request->food_title . '%')->get();
-            return view('Admin/Food/searchfood')->with('food',$food);
+            return view('Admin/Food/search_food')->with('food',$food);
         }
 
         if(!empty($request->food_price)){
             //get data from food table
             $food = Food::where('food_price',$request->food_price)->get();
-            return view('Admin/Food/searchfood')->with('food',$food);
+            return view('Admin/Food/search_food')->with('food',$food);
         }
 
         if(!empty($request->category_name)){
             //get data from food table
             $food = Food::where('category_name',$request->category_name)->get();
-            return view('Admin/Food/searchfood')->with('food',$food);
+            return view('Admin/Food/search_food')->with('food',$food);
         }
 
     }
@@ -267,9 +282,9 @@ class RegisterController extends Controller
         $food = Food::where($request->food_id->all());
         return view('Admin/Food/get_food')->with('food',$food);
     }
-    public function delete_food(Request $request){
+    public function delete_food($food_id){
 
-        $food = Food::where($request->food_id->all());
+        $food = Food::where('food_id',$food_id)->delete();
         return view('Admin/Food/get_food')->with('food',$food);
     }
 
