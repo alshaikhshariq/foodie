@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
                                      'pending',
                                      'cancelled']);
             $table->integer         ('order_quantity');
-            $table->integer         ('delivery_address');
+            $table->string         ('delivery_address');
             $table->boolean         ('is_discounted')->default('0');
             $table->integer         ('total_price');
             $table->string          ('special_instructions');

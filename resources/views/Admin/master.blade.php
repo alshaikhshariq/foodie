@@ -86,6 +86,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
+<<<<<<< HEAD
        <li class="active">
          <a href    ="{{url('admindashboard')}}">   <i class="fa fa-dashboard"> </i> Dashboard</a>  </li>
        <li ><a href ="{{url('searchrestaurant')}}"> <i class="fa fa-dashboard"> </i> Register</a>   </li>
@@ -93,6 +94,15 @@
        <li ><a href ="{{url('search_category')}}">  <i class="fa fa-dashboard"> </i> Category</a>   </li>
        <li ><a href ="{{url('searchfood')}}">      <i class="fa fa-dashboard"> </i> Food</a>   </li>      
       
+=======
+       <li class="active"><a href="{{url('admindashboard')}}">  <i class="fa fa-dashboard"> </i> Dashboard  </a></li>
+       <li ><a href ="{{url('searchrestaurant')}}">             <i class="fa fa-dashboard"> </i> Register   </a></li>
+       <li ><a href ="{{url('search_user')}}">                  <i class="fa fa-dashboard"> </i> User       </a></li>
+       <li ><a href ="{{url('search_category')}}">              <i class="fa fa-dashboard"> </i> Category   </a></li>
+       <li ><a href ="{{url('search_food')}}">                  <i class="fa fa-dashboard"> </i> Food       </a></li>      
+       <li ><a href ="{{url('search_order')}}">                  <i class="fa fa-dashboard"> </i> Orders     </a></li>      
+   
+>>>>>>> 9a630fc663d22b2758f16a2e7ccbb0eec4397231
          
      
         
