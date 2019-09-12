@@ -80,7 +80,7 @@ class CategoryController extends Controller
             try
             {
                 //check if user already exist
-                $isexist    =   Category::where('category_id', $request->category)->first();
+                $isexist    =   Category::where('category_id', $request->category_id)->first();
                 if(empty($isexist))
                 {
                     $category = Category::create($request->all());

@@ -11,11 +11,13 @@ class Food extends Model
 
 
         
-        'restaurant_id', 
+        'restaurant_id',
+        'restaurant_name', 
         'food_title',
         'food_price', 
         'is_customized',
         'meta_data',
         'category_id',
+        'category_name'
     ];
 }

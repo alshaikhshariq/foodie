@@ -49,9 +49,6 @@ Route::post     ('/search_order'                ,'web\AdminControllers\RegisterC
 
 Route::get('/addfood','Web\AdminControllers\RegisterController@add_food')->name('add.food');
 
-//Route::post('/create_food','Web\AdminControllers\RegisterController@create_food')->name('.food');
-
-
 Route::post('/createfood','Web\AdminControllers\RegisterController@create_food')->name('create.food');
 
 //edit food route
@@ -61,7 +58,7 @@ Route::get('/editfood/{food_id}','Web\AdminControllers\RegisterController@edit_f
 Route::put('/updatefood/{food_id}','Web\AdminControllers\RegisterController@update_food')->name('update.food');
 
 //search food route
-Route::get('/searchfood','Web\AdminControllers\RegisterController@foodindex')->name('search.food');
+Route::get('/search_food','Web\AdminControllers\RegisterController@foodindex')->name('search.food');
 
 //find food route
 Route::get('/findfood','Web\AdminControllers\RegisterController@search_food')->name('find.food');

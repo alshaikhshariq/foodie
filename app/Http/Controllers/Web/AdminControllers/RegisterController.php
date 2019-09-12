@@ -199,6 +199,8 @@ class RegisterController extends Controller
         [
             'food_title'         =>  'required',
             'food_price'         =>  'required|numeric',
+            'category_name'      =>  'required',
+            'restaurant_name'    =>  'required',
             'is_customized'      =>  'required',
             'description'        =>  'required'
             
@@ -208,11 +210,12 @@ class RegisterController extends Controller
             $food->food_title = $request->input('food_title');
             $food->food_price = $request->input('food_price');
             $food->is_customized = "0";
-            $food->category_id = "1";
-            $food->restaurant_id = "1";
-            $food['meta_data'] = ['description' => $request->input('description')];
+            $food->category_name = $request->input('category_name');
+            $food->category_id = 1;
+            $food->restaurant_id = 1;
+            $food->meta_data = json_encode(["description" => $request->input('description')]);
             $food->save();
-                return redirect()->route('add.food');
+                return redirect()->route('search.food');
     }
     catch(\Exception $exception){
         return back()->withError($exception->getMessage())->withInput();

@@ -50,7 +50,7 @@
         <div class="col-xs-12">
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">Categor List</h3>
+              <h3 class="box-title">Order List</h3>
 
               <a href="{{url('addcategory')}}" class="btn btn-primary pull-right">
                             <i class="fa fa-plus"> Add Category</i>
@@ -60,7 +60,7 @@
             <div class="container">
 
             @if($order->isEmpty())         
-               <h3 class="text-center">no categories of this type</h3>
+               <h3 class="text-center">no order of this type</h3>
             @else
             <table class="table table-striped">
                    <thead>
