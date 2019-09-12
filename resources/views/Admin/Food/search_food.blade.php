@@ -40,11 +40,25 @@
                   <input type="number" class="form-control" id="exampleFoodPrice1" name="price" placeholder="enter food price">
                  </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                 <div class="form-group">
-                  <label for="exampleCategory1">Category</label>
-                  <input type="text" class="form-control" id="exampleCategory1" name="category" placeholder="enter category">
+                  <label > Customized</label>
+                  <input type="text" class="form-control" name="is_customized" value="{{ old('is_customized') }}" placeholder="is customized">
+                  @if ($errors->has('is_customized'))
+                   <div class="danger">{{ $errors->first('is_customized') }}</div>
+                  @endif
+                 </div>
                 </div>
+                
+                <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                        <label> Food Description</label>
+                        <textarea class="form-control" rows="5" name="description" value="{{ old('description') }}" placeholder="enter description about food ..."></textarea>
+                        @if ($errors->has('description'))
+                        <div class="danger">{{ $errors->first('description') }}</div>
+                        @endif
+                 </div>
                 </div>
               </div>
 
@@ -65,7 +79,7 @@
             <div class="box-header">
               <h3 class="box-title">Food List</h3>
 
-              <a href="{{url('add_food')}}" class="btn btn-primary pull-right">
+              <a href="{{url('addfood')}}" class="btn btn-primary pull-right">
                             <i class="fa fa-plus"> Add Food</i>
                           </a>
             </div>
@@ -89,14 +103,22 @@
                       <tr>
                         <td>{{ $food->food_title }}</td>
                         <td>{{ $food->food_price }}</td>
-                        <td>{{ $food->category_name }}</td>
-                        
+                        <td>{{ $food->is_customized }}</td>
+                        <td>{{ $food->description }}</td>
                         
                         <td class="text-center">
-                          <a href="{{url('edit_food',$food->food_id)}}" class="btn btn-primary">
+                          <a href="{{url('editfood',$food->food_id)}}" class="btn btn-primary">
                             <i class="fa fa-edit"></i>
                           </a>
+
+                         
+                          <a href="{{url('deletefood',$food->food_id)}}" class="btn btn-primary">
+                            <i class="fa fa-dustbin"></i>
+                          </a>
+                        
                         </td>
+
+                        
                       </tr>
                       @endforeach
                    </tbody>

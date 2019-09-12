@@ -176,6 +176,15 @@ class RegisterController extends Controller
         
         
     }
+   
+   
+    public function foodindex()
+    {
+        //get news from news table
+        $food = Food::orderBy('created_at','desc')->paginate(5);
+        return view('Admin/Food/search_food')->with('food',$food);
+        
+    }
     // return add food page
     public function add_food(Request $request)
     {
@@ -184,34 +193,26 @@ class RegisterController extends Controller
       
         
     }
-    public function store_food(Request $request)
+    public function create_food(Request $request)
     {
         $this->validate($request,
         [
-            'food_title'         => 'required',
-            'food_price'         => 'required|numeric',
-            'category_name'      => 'required',
-            'image'              => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+            'food_title'         =>  'required',
+            'food_price'         =>  'required|numeric',
+            'is_customized'      =>  'required',
+            'description'        =>  'required'
+            
         ]);
-       
-        try{
-        $profile_image = $request->file('image');
-        if(isset($profile_image)){
-        $image_name = $profile_image->getClientOriginalName();
-        $image_name = str_replace(" ","_",$image_name);
-        $image_path = 'upload/foodImages/';
-        $profile_image->move(public_path($image_path),$image_name);
-        }
-
-        $food = new Food();
-        $food->food_title     = $request->input('food_title');
-        $food->food_price     = $request->input('food_price');
-        $food->category_name  = $request->input('category_name');
-        $food->image_path     = $image_path;
-        $food->image_name     = $image_path;
-        $food->save();
-
-        return redirect()->route('search.food');
+    try{
+            $food = new Food();
+            $food->food_title = $request->input('food_title');
+            $food->food_price = $request->input('food_price');
+            $food->is_customized = "0";
+            $food->category_id = "1";
+            $food->restaurant_id = "1";
+            $food['meta_data'] = ['description' => $request->input('description')];
+            $food->save();
+                return redirect()->route('add.food');
     }
     catch(\Exception $exception){
         return back()->withError($exception->getMessage())->withInput();
@@ -279,7 +280,12 @@ class RegisterController extends Controller
     public function get_food(Request $request)
     {
 
-        $food = Food::where($request->food_id->paginate(4));
+        $food = Food::where($request->food_id->all());
+        return view('Admin/Food/get_food')->with('food',$food);
+    }
+    public function delete_food($food_id){
+
+        $food = Food::where('food_id',$food_id)->delete();
         return view('Admin/Food/get_food')->with('food',$food);
     }
 

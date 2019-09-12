@@ -8,10 +8,14 @@ class Food extends Model
 {
     //make array of fillable fields
     protected $fillable = [
-        'category_id',
+
+
+        
         'restaurant_id', 
         'food_title',
         'food_price', 
         'is_customized',
+        'meta_data',
+        'category_id',
     ];
 }

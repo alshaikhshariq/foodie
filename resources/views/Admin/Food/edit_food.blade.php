@@ -54,24 +54,25 @@
                 </div>
                 <div class="col-md-3">
                 <div class="form-group">
-                  <label >Category</label>
-                  <input type="number" class="form-control" name="category" value="{{ old('category_name',$food->category_name) }}" placeholder="enter contact no" disabled>
-                  @if ($errors->has('contact'))
-                   <div class="danger">{{ $errors->first('contact') }}</div>
+                  <label > Customized</label>
+                  <input type="text" class="form-control" name="is_customized" value="{{ old('is_customized') }}" placeholder="is customized">
+                  @if ($errors->has('is_customized'))
+                   <div class="danger">{{ $errors->first('is_customized') }}</div>
                   @endif
-                </div>
-                </div>
-                                 <div class="col-md-3">
-                      <div class="form-group">
-                        <label >Cover Image</label>
-                        <input type="file" class="form-control" name="image"  placeholder="enter delivery fee">
-                        @if ($errors->has('image'))
-                        <div class="danger">{{ $errors->first('image') }}</div>
-                        @endif
-                    </div>
                  </div>
                 </div>
                 
+                <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                        <label> Food Description</label>
+                        <textarea class="form-control" rows="5" name="description" value="{{ old('description') }}" placeholder="enter description about food ..."></textarea>
+                        @if ($errors->has('description'))
+                        <div class="danger">{{ $errors->first('description') }}</div>
+                        @endif
+                 </div>
+                </div>
+              </div>  
 
             </div>
               <!-- /.box-body -->

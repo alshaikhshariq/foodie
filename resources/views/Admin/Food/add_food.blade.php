@@ -25,7 +25,11 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="POST" action="{{ route('add.food') }}" enctype="multipart/form-data">
+
+            <form method="POST" action="{{ route('create.food') }}" enctype="multipart/form-data">
+
+            
+
               <div class="box-body">
                     <input type="hidden" value="{{ csrf_token() }}" name="_token">
                     @if (session('error'))
@@ -50,29 +54,34 @@
                   @endif
                  </div>
                 </div>
+
                 <div class="col-md-3">
                 <div class="form-group">
-                  <label >Category Name</label>
-                  <input type="text" class="form-control" name="category_name" value="{{ old('category_name') }}" placeholder="enter category name">
-                  @if ($errors->has('category_name'))
-                   <div class="danger">{{ $errors->first('category_name') }}</div>
+                  <label > Customized</label>
+                  <input type="text" class="form-control" name="is_customized" value="{{ old('is_customized') }}" placeholder="is customized">
+                  @if ($errors->has('is_customized'))
+                   <div class="danger">{{ $errors->first('is_customized') }}</div>
                   @endif
+                 </div>
                 </div>
+                
+                <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                        <label> Food Description</label>
+                        <textarea class="form-control" rows="5" name="description" value="{{ old('description') }}" placeholder="enter description about food ..."></textarea>
+                        @if ($errors->has('description'))
+                        <div class="danger">{{ $errors->first('description') }}</div>
+                        @endif
+                 </div>
                 </div>
+              </div>  
+                
                 
 
 
             
-                  <div class="col-md-3">
-                      <div class="form-group">
-                        <label >Food Image</label>
-                        <input type="file" class="form-control" name="image"  placeholder="enter delivery fee">
-                        @if ($errors->has('image'))
-                        <div class="danger">{{ $errors->first('image') }}</div>
-                        @endif
-                    </div>
-                 </div>
-                </div>
+                  
                 
         </div>
 

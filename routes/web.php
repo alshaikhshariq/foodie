@@ -46,24 +46,30 @@ Route::post     ('/login'                       ,'Web\LoginController@login')   
 Route::post     ('/search_order'                ,'web\AdminControllers\RegisterController@search')      ->name('order.restaurant');
 
 //add food route
-Route::post('/store_food','Web\AdminControllers\RegisterController@store_food')->name('add.food');
 
-Route::get('/store_food','Web\AdminControllers\RegisterController@store_food')->name('search.food');
+Route::get('/addfood','Web\AdminControllers\RegisterController@add_food')->name('add.food');
+
+//Route::post('/create_food','Web\AdminControllers\RegisterController@create_food')->name('.food');
+
+
+Route::post('/createfood','Web\AdminControllers\RegisterController@create_food')->name('create.food');
 
 //edit food route
-Route::get('/edit_food/{food_id}','Web\AdminControllers\RegisterController@edit_food')->name('edit.food');
+Route::get('/editfood/{food_id}','Web\AdminControllers\RegisterController@edit_food')->name('edit.food');
 
 //update food route
-Route::put('/update_food/{food_id}','Web\AdminControllers\RegisterController@update_food')->name('update.food');
+Route::put('/updatefood/{food_id}','Web\AdminControllers\RegisterController@update_food')->name('update.food');
 
 //search food route
-Route::get('/search_food','Web\AdminControllers\RegisterController@search_food')->name('search.food');
+Route::get('/searchfood','Web\AdminControllers\RegisterController@foodindex')->name('search.food');
 
 //find food route
-Route::get('/find_food','Web\AdminControllers\RegisterController@search_food')->name('find.food');
+Route::get('/findfood','Web\AdminControllers\RegisterController@search_food')->name('find.food');
 
 //get food route
-Route::get('/get_food','Web\AdminControllers\RegisterController@get_food')->name('search.food');
+Route::get('/getfood','Web\AdminControllers\RegisterController@get_food')->name('get.food');
+
+Route::get('/deletefood/{food_id}','Web\AdminControllers\RegisterController@delete_food')->name('delete.food');
 
 //routes for restaurants
 Route::resource('restaurantdashboard','Web\RestaurantControllers\DashboardController');
