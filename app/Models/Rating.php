@@ -9,7 +9,6 @@ class Rating extends Model
     //
 
     protected $fillable = [
-
         'user_id',
         'restaurant_id',
         'rating'

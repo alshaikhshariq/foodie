@@ -91,7 +91,7 @@
        <li ><a href ="{{url('search_user')}}">                  <i class="fa fa-dashboard"> </i> User       </a></li>
        <li ><a href ="{{url('search_category')}}">              <i class="fa fa-dashboard"> </i> Category   </a></li>
        <li ><a href ="{{url('search_food')}}">                  <i class="fa fa-dashboard"> </i> Food       </a></li>      
-       <li ><a href ="{{url('search_order')}}">                  <i class="fa fa-dashboard"> </i> Orders     </a></li>      
+       <li ><a href ="{{url('search_orderdetails')}}">          <i class="fa fa-dashboard"> </i> Orders Detail     </a></li>      
    
          
      

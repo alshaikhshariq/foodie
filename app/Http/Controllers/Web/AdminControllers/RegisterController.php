@@ -280,7 +280,8 @@ class RegisterController extends Controller
 
     }
 
-    public function get_food(Request $request){
+    public function get_food(Request $request)
+    {
 
         $food = Food::where($request->food_id->all());
         return view('Admin/Food/get_food')->with('food',$food);
