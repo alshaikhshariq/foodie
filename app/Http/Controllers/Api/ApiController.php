@@ -101,15 +101,41 @@ class ApiController extends Controller
             return response()->json(['status' =>$this->VALIDATION_ERROR, 'error'=>$validator->errors()]);
         }
         
-        $inOrderDetail  =   OrderDetail::where('order_detail_id', $request->order_id)->first();
+        $inOrderDetail  =   OrderDetail::where('order_details_id', $request->order_details_id)->first();
         if(empty($inOrderDetail))
         {
         $orderdetail = OrderDetail::create($request->all());
-        return response()->json(['status' =>$this->SUCCESS_STATUS, 'Order'=> $orderdetail]);
+        return response()->json(['status' =>$this->SUCCESS_STATUS, 'OrderDetail'=> $orderdetail]);
         }
         else
         {
         return response()->json(['status' =>$this->FALIURE_STATUS, 'message'=> 'user already exists']);
         }
+    }
+
+    public function createRatings(Request $request)
+    {
+        $validator = validator::make($request->all(),
+        [
+            'order_id'              => 'required',
+            'food_id'               => 'required',
+            'order_quantity'        => 'required',
+        ]);
+        
+        if($validator->fails())
+        {
+            return response()->json(['status' =>$this->VALIDATION_ERROR, 'error'=>$validator->errors()]);
+        }
+        
+        $inOrderDetail  =   OrderDetail::where('order_details_id', $request->order_details_id)->first();
+        if(empty($inOrderDetail))
+        {
+        $orderdetail = OrderDetail::create($request->all());
+        return response()->json(['status' =>$this->SUCCESS_STATUS, 'OrderDetail'=> $orderdetail]);
+        }
+        else
+        {
+        return response()->json(['status' =>$this->FALIURE_STATUS, 'message'=> 'user already exists']);
+        }  
     }
 }

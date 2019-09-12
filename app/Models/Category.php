@@ -9,6 +9,7 @@ class Category extends Model
   
     // make array of fillable fields
     protected $fillable = [
+        'restaurant_id',
         'category_name', 
     ];
 }

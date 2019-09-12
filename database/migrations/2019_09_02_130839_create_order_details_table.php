@@ -22,7 +22,7 @@ class CreateOrderDetailsTable extends Migration
             $table->timestamps();
             $table->foreign('order_id')->references('order_id')
                         ->on('orders')->onDelete('cascade');
-            $table->foreign('food_id')->references('food_id')
+            $table->foreign('food_id')->references('id')
                         ->on('foods')->onDelete('cascade');
 
         });

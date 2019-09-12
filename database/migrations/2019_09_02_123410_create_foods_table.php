@@ -14,7 +14,7 @@ class CreateFoodsTable extends Migration
     public function up()
     {
         Schema::create('foods', function (Blueprint $table) {
-            $table->bigIncrements   ('food_id');
+            $table->bigIncrements   ('id');
             $table->bigInteger      ('category_id')->unsigned();
             $table->bigInteger      ('restaurant_id')->unsigned();
             $table->string          ('food_title');
@@ -22,7 +22,7 @@ class CreateFoodsTable extends Migration
             $table->boolean         ('is_customized')->default('0');
             $table->json            ('meta_data');
             $table->timestamps();
-            $table->foreign('category_id')->references('category_id')
+            $table->foreign('category_id')->references('id')
                         ->on('categories')->onDelete('cascade');
             $table->foreign('restaurant_id')->references('id')
                         ->on('restaurants')->onDelete('cascade');
