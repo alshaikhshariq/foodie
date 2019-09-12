@@ -8,9 +8,9 @@ use App\Http\Controllers\Controller;
 use Validator;
 use App\User;
 use App\Models\Category;
-use App\Models\Restaurant;
 use App\Models\Order;
-use App\Models\Order_Details;
+use App\Models\Food;
+use App\Models\OrderDetail;
 
 class ApiController extends Controller
 {
@@ -60,13 +60,11 @@ class ApiController extends Controller
     {
         $validator = validator::make($request->all(),
         [
-            //'user_id'               => 'required',
-            //ERROR: user_id doesn't have a default value
+            'user_id'               => 'required',
             'restaurant_id'         => 'required',
             'order_status'          => 'required',
-            'order_quantity'        => 'required',
             'delivery_address'      => 'required',
-            //'is_discounted'         => 'required',
+            'is_discounted'         => 'required',
             'total_price'           => 'required',
             'special_instructions'  => 'required',
 
@@ -76,30 +74,42 @@ class ApiController extends Controller
         {
             return response()->json(['status' =>$this->VALIDATION_ERROR, 'error'=>$validator->errors()]);
         }
+        
+        $inOrder    =   Order::where('order_id', $request->order_id)->first();
+        if(empty($inOrder))
+        {
+        $order = Order::create($request->all());
+        return response()->json(['status' =>$this->SUCCESS_STATUS, 'Order'=> $order]);
+        }
         else
         {
-            try
-            {
-                //check if user already exist
-                $inOrder        =   Order::where('order_id', $request->order_id)->first();
-                //$inOrderDetails =   Order_Details::where('order_id', $request->order_id)->first();
-                //if(empty($inOrder) && empty($inOrderDetails))
-                if(empty($inOrder))
-                {
-                    $order = Order::create($request->all());
-
-                    return response()->json(['status' =>$this->SUCCESS_STATUS, 'Order'=> $order]);
-                }
-                else
-                {
-                    return response()->json(['status' =>$this->FALIURE_STATUS, 'message'=> 'user already exists']);
-                }
-            }
-            catch(\Illuminate\Database\QueryException $e)
-            {
-                return response() -> json(['status' => $this ->FALIURE_STATUS, 'message' => $e -> getPrevious()]);
-            }
-        }
+        return response()->json(['status' =>$this->FALIURE_STATUS, 'message'=> 'user already exists']);
+        }      
     }
 
+    public function createOrderDetails(request $request)
+    {
+        $validator = validator::make($request->all(),
+        [
+            'order_id'              => 'required',
+            'food_id'               => 'required',
+            'order_quantity'        => 'required',
+        ]);
+        
+        if($validator->fails())
+        {
+            return response()->json(['status' =>$this->VALIDATION_ERROR, 'error'=>$validator->errors()]);
+        }
+        
+        $inOrderDetail  =   OrderDetail::where('order_detail_id', $request->order_id)->first();
+        if(empty($inOrderDetail))
+        {
+        $orderdetail = OrderDetail::create($request->all());
+        return response()->json(['status' =>$this->SUCCESS_STATUS, 'Order'=> $orderdetail]);
+        }
+        else
+        {
+        return response()->json(['status' =>$this->FALIURE_STATUS, 'message'=> 'user already exists']);
+        }
+    }
 }

@@ -22,7 +22,7 @@ Route::group(['prefix' => 'auth/v1'], function ()
     Route::post     ('login'        , 'AuthController@login');
     Route::post     ('signup'       , 'AuthController@signup');
     Route::post     ('addUser'      , 'Api\ApiController@addUser');
-    Route::post     ('createOrder'      , 'Api\ApiController@createOrder');
+    Route::post     ('createOrder'  , 'Api\ApiController@createOrder');
 
     //Route::post     ('addCategory'  , 'Api\ApiController@addCategory');
 
