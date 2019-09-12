@@ -47,6 +47,24 @@
                 </div>
                 <div class="col-md-3">
                 <div class="form-group">
+                  <label>Category Name</label>
+                  <input type="text" class="form-control"  name="category_name" value="{{ old('category_name') }}" placeholder="enter category name">
+                  @if ($errors->has('category_name'))
+                  <div class="danger">{{ $errors->first('category_name') }}</div>
+                 @endif 
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="form-group">
+                  <label>Restaurant Name</label>
+                  <input type="text" class="form-control"  name="restaurant_name" value="{{ old('restaurant_name') }}" placeholder="enter restaurant name">
+                  @if ($errors->has('restaurant_name'))
+                  <div class="danger">{{ $errors->first('restaurant_name') }}</div>
+                 @endif 
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="form-group">
                   <label > Food Price</label>
                   <input type="number" class="form-control" name="food_price" value="{{ old('food_price') }}" placeholder="enter price">
                   @if ($errors->has('food_price'))
@@ -64,6 +82,7 @@
                   @endif
                  </div>
                 </div>
+                
                 
                 <div class="row">
                 <div class="col-md-12">

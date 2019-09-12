@@ -113,7 +113,7 @@
 
                          
                           <a href="{{url('deletefood',$food->food_id)}}" class="btn btn-primary">
-                            <i class="fa fa-dustbin"></i>
+                            <i class="fa fa-trash"></i>
                           </a>
                         
                         </td>
