@@ -291,4 +291,5 @@ class RegisterController extends Controller
         return view('Admin/Food/get_food')->with('food',$food);
     }
 
+   
 }
