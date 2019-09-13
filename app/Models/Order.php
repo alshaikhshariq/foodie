@@ -18,4 +18,6 @@ class Order extends Model
         'total_price',
         'special_instructions', 
     ];
+
+    protected $primaryKey   =   'order_id'; 
 }
