@@ -52,9 +52,7 @@
             <div class="box-header">
               <h3 class="box-title">Order List</h3>
 
-              <a href="{{url('addcategory')}}" class="btn btn-primary pull-right">
-                            <i class="fa fa-plus"> Add Category</i>
-                          </a>
+              
             </div>
             <!-- /.box-header -->
             <div class="container">

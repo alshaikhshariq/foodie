@@ -70,3 +70,6 @@ Route::get('/deletefood/{food_id}','Web\AdminControllers\RegisterController@dele
 
 //routes for restaurants
 Route::resource('restaurantdashboard','Web\RestaurantControllers\DashboardController');
+
+//route for getting search order
+Route::get('search_order','Web\AdminControllers\RegisterController@orderindex')->name('search.order');

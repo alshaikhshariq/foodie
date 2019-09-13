@@ -8,6 +8,7 @@ use Mail;
 use Illuminate\Support\Str;
 use App\Models\Restaurant;
 use App\Models\Food;
+use App\Models\Order;
 use Illuminate\Support\Facades\Input;
 use Validator;
 
@@ -292,5 +293,12 @@ class RegisterController extends Controller
         return view('Admin/Food/get_food')->with('food',$food);
     }
 
+    public function orderindex()
+    {
+        //get news from news table
+        $order = Order::orderBy('created_at','desc')->paginate(5);
+        return view('Admin/Order/search_order')->with('order',$order);
+        
+    }
    
 }
