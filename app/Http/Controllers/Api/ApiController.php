@@ -77,7 +77,7 @@ class ApiController extends Controller
             return response()->json(['status' =>$this->VALIDATION_ERROR, 'error'=>$validator->errors()]);
         }
         
-        $inOrder    =   Order::where('order_id', $request->order_id)->first();
+        $inOrder     =   Order::where('order_id', $request->order_id)->first();
         if(empty($inOrder))
         {
         $order = Order::create($request->all());
