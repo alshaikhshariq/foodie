@@ -10,6 +10,8 @@ use App\User;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Food;
+use App\Models\Rating;
+use App\Models\Review;
 use App\Models\OrderDetail;
 
 class ApiController extends Controller
@@ -117,9 +119,9 @@ class ApiController extends Controller
     {
         $validator = validator::make($request->all(),
         [
-            'order_id'              => 'required',
-            'food_id'               => 'required',
-            'order_quantity'        => 'required',
+            'user_id'              => 'required',
+            'restaurant_id'        => 'required',
+            'rating'        => 'required',
         ]);
         
         if($validator->fails())
@@ -127,11 +129,37 @@ class ApiController extends Controller
             return response()->json(['status' =>$this->VALIDATION_ERROR, 'error'=>$validator->errors()]);
         }
         
-        $inOrderDetail  =   OrderDetail::where('order_details_id', $request->order_details_id)->first();
-        if(empty($inOrderDetail))
+        $inRating  =   Rating::where('rating_id', $request->rating_id)->first();
+        if(empty($inRating))
         {
-        $orderdetail = OrderDetail::create($request->all());
-        return response()->json(['status' =>$this->SUCCESS_STATUS, 'OrderDetail'=> $orderdetail]);
+        $rating = Rating::create($request->all());
+        return response()->json(['status' =>$this->SUCCESS_STATUS, 'OrderDetail'=> $rating]);
+        }
+        else
+        {
+        return response()->json(['status' =>$this->FALIURE_STATUS, 'message'=> 'user already exists']);
+        }  
+    }
+
+    public function createReview(Request $request)
+    {
+        $validator = validator::make($request->all(),
+        [
+            'user_id'              => 'required',
+            'restaurant_id'        => 'required',
+            'review'        => 'required',
+        ]);
+        
+        if($validator->fails())
+        {
+            return response()->json(['status' =>$this->VALIDATION_ERROR, 'error'=>$validator->errors()]);
+        }
+        
+        $inReview  =   Review::where('id', $request->id)->first();
+        if(empty($inReview))
+        {
+        $review = Review::create($request->all());
+        return response()->json(['status' =>$this->SUCCESS_STATUS, 'Review'=> $review]);
         }
         else
         {
