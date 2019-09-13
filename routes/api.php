@@ -25,6 +25,7 @@ Route::group(['prefix' => 'auth/v1'], function ()
     Route::post     ('createOrder'  , 'Api\ApiController@createOrder');
     Route::post     ('createOrderDetails'  , 'Api\ApiController@createOrderDetails');
     Route::post     ('createRatings'  , 'Api\ApiController@createRatings');
+    Route::post     ('createReview'  , 'Api\ApiController@createReview');
 
 
     //Route::post     ('addCategory'  , 'Api\ApiController@addCategory');
