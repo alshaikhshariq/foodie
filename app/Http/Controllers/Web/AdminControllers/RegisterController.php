@@ -212,8 +212,9 @@ class RegisterController extends Controller
             $food->food_price = $request->input('food_price');
             $food->is_customized = "0";
             $food->category_name = $request->input('category_name');
-            $food->category_id = 1;
-            $food->restaurant_id = 1;
+            $food->restaurant_name = $request->input('restaurant_name');
+            //$food->category_id = ;
+            //$food->restaurant_id = 1;
             $food->meta_data = json_encode(["description" => $request->input('description')]);
             $food->save();
                 return redirect()->route('search.food');
