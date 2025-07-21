@@ -12,7 +12,7 @@
         <small>Preview</small>
       </h1>
     </section>
-
+{{--Test Changes--}}
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -49,7 +49,7 @@
                   @endif
                  </div>
                 </div>
-                
+
                 <div class="row">
                 <div class="col-md-12">
                 <div class="form-group">
@@ -86,7 +86,7 @@
             <!-- /.box-header -->
             <div class="container">
 
-            @if($food->isEmpty())         
+            @if($food->isEmpty())
                <h3 class="text-center">no food found</h3>
             @else
             <table class="table table-striped">
@@ -105,46 +105,46 @@
                         <td>{{ $food->food_price }}</td>
                         <td>{{ $food->is_customized }}</td>
                         <td>{{ $food->description }}</td>
-                        
+
                         <td class="text-center">
                           <a href="{{url('editfood',$food->food_id)}}" class="btn btn-primary">
                             <i class="fa fa-edit"></i>
                           </a>
 
-                         
+
                           <a href="{{url('deletefood',$food->food_id)}}" class="btn btn-primary">
                             <i class="fa fa-trash"></i>
                           </a>
-                        
+
                         </td>
 
-                        
+
                       </tr>
                       @endforeach
                    </tbody>
-                </table>        
+                </table>
             @endif
-               
-                
+
+
              </div>
             <!-- /.box-body -->
-            
+
           </div>
           <!-- /.box -->
         </div>
       </div>
 
-          
+
 
         </div>
         <!--/.col (left) -->
         <!-- right column -->
-      
+
         <!--/.col (right) -->
       </div>
       <!-- /.row -->
     </section>
     <!-- /.content -->
-  
+
 
 @endsection
